@@ -5,32 +5,31 @@
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Random;
 
 public class TimeMeter {
     public static void main(String[] args) {
-        Random random = new Random();
-        ArrayList<Integer> arrayList = new ArrayList<>(500000);
-        LinkedList<Integer> linkedList = new LinkedList<>();
-        int i;
-        double timeStart, timeStop;
+        ArrayList<Object> arrayList = new ArrayList<>();
+        LinkedList<Object> linkedList = new LinkedList<>();
+        long timeStart, timeStop;
 
         timeStart = System.currentTimeMillis();
-        for (i = 0; i < 500000; i++) {
-            linkedList.add(i, random.nextInt(1, 2));
+        for (int i = 0; i < 500000; i++) {
+            linkedList.add(new Object());
         }
         timeStop = System.currentTimeMillis();
-        double linkedListTime = timeStop - timeStart;
+        long linkedListTime = timeStop - timeStart;
 
         timeStart = System.currentTimeMillis();
-        for (i = 0; i < 500000; i++) {
-            arrayList.add(i, random.nextInt(1, 2));
+        for (int i = 0; i < 500000; i++) {
+            arrayList.add(new Object());
         }
         timeStop = System.currentTimeMillis();
-        double arrayListTime = timeStop - timeStart;
+        long arrayListTime = timeStop - timeStart;
 
         System.out.println("Время заполнения, мс");
         System.out.println("LinkedList: " + linkedListTime);
         System.out.println("ArrayList: " + arrayListTime);
+
+        System.out.print("Разница, мс: " + (arrayListTime - linkedListTime));
     }
 }
